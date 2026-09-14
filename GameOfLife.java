@@ -21,37 +21,48 @@ public class GameOfLife {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("Rows and columns must be positive.");
         }
-   
+        society = new boolean[rows][cols];
     }
 
     /** Returns the number of rows in the society. */
     public int numberOfRows() {
-        return -1;
+        return society.length;
     }
 
     /** Returns the number of columns in the society. */
     public int numberOfColumns() {
-        return -1;
+        return society[0].length;
     }
 
     /** Makes the location at row, col alive. */
     public void growCellAt(int row, int col) {
-        
+        if (row >= 0 && row < society.length && col >= 0 && col < society[0].length) {
+            society[row][col] = true;
+        }
     }
 
     /** Makes the location at row, col dead. */
     public void killCellAt(int row, int col) {
-        
+        if (row >= 0 && row < society.length && col >= 0 && col < society[0].length) {
+            society[row][col] = false;
+        }
     }
 
     /** Returns true if the location contains a live cell. */
     public boolean cellAt(int row, int col) {
+        if (row >= 0 && row < society.length && col >= 0 && col < society[0].length) {
+            return society[row][col];
+        }
         return false;
     }
 
     /** Makes every location in the society dead. */
     public void clear() {
-        
+        for (int i = 0; i < society.length; i++) {
+            for (int j = 0; j < society[0].length; j++) {
+                society[i][j] = false;
+            }
+        }
     }
 
     /**
@@ -63,11 +74,25 @@ public class GameOfLife {
      * TODO: Complete this method.
      */
     public int neighborCount(int row, int col) {
+        int count = 0;
+        
+        for(int i = row - 1; i <= row + 1; i++) {
+            for(int j = col - 1; j <= col + 1; j++) {
+                if(i == row && j == col) {
+                    continue; // Skip the cell itself
+                }
+                if(i >= 0 && i < society.length && j >= 0 && j < society[0].length) {
+                    if(society[i][j]) {
+                        count++;
+                    }
+                }
+            }
+        }
         // TODO: Traverse the 3 x 3 neighborhood around row, col.
         //       Skip row, col itself.
         //       Check bounds before reading society[r][c].
 
-        return 0;
+        return count;
     }
 
     /**
@@ -82,6 +107,20 @@ public class GameOfLife {
      * TODO: Complete this method.
      */
     public void update() {
+        boolean[][] nextGeneration = new boolean[society.length][society[0].length];
+
+        for (int i = 0; i < society.length; i++) {
+            for (int j = 0; j < society[0].length; j++) {
+                int neighbors = neighborCount(i, j);
+                if (society[i][j]) { // Cell is alive
+                    nextGeneration[i][j] = (neighbors == 2 || neighbors == 3);
+                } else { // Cell is dead
+                    nextGeneration[i][j] = (neighbors == 3);
+                }
+            }
+        }
+        society = nextGeneration;
+
         // TODO: Create a SECOND 2D boolean array for the next generation.
         //
         // IMPORTANT:
@@ -101,7 +140,18 @@ public class GameOfLife {
     public String toString() {
         // TODO: Use nested loops to build one String containing the board.
         //       Add a newline after every row.
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < society.length; i++) {
+            for (int j = 0; j < society[0].length; j++) {
+                if (society[i][j]) {
+                    sb.append("O");
+                } else {
+                    sb.append(".");
+                }
+            }
+            sb.append("\n");
+        }
 
-        return "Complete toString() to display the text version of the board.\n";
+        return sb.toString();
     }
 }
