@@ -86,8 +86,6 @@ public class GameOfLife {
                 }
             }
         }
-        //       Skip row, col itself.
-        //       Check bounds before reading society[r][c].
 
         return count;
     }
@@ -117,10 +115,6 @@ public class GameOfLife {
         }
         society = nextGeneration;
 
-        // IMPORTANT:
-        // Do not change society while you are still using it to calculate
-        // neighbors. Every cell in the new generation must be based on the
-        // same old generation.
     }
 
     /**

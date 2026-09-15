@@ -13,9 +13,8 @@ public class GameOfLifeTest {
         testConstructorAndBasicMethods();
         testNeighborCountInMiddle();
         testNeighborCountAtEdge();
-        testNoWrapAround();
-        testOverpopulation();
         testBlinkerUpdate();
+        testOverpopulation();
         testBirth();
         testSurvival();
         testIsolation();
@@ -24,6 +23,7 @@ public class GameOfLifeTest {
         testNoNeighbors();
         testSeveralNeighbors();
         testEightNeighbors();
+        testNoWrapAround();
 
         System.out.println();
         System.out.println("Passed: " + passed);
