@@ -70,8 +70,6 @@ public class GameOfLife {
      *
      * A location can have at most eight neighbors. Locations outside the
      * board DO NOT wrap around to the other side.
-     *
-     * TODO: Complete this method.
      */
     public int neighborCount(int row, int col) {
         int count = 0;
@@ -88,7 +86,6 @@ public class GameOfLife {
                 }
             }
         }
-        // TODO: Traverse the 3 x 3 neighborhood around row, col.
         //       Skip row, col itself.
         //       Check bounds before reading society[r][c].
 
@@ -104,7 +101,6 @@ public class GameOfLife {
      * 3. A live cell with fewer than 2 neighbors dies from isolation.
      * 4. A live cell with more than 3 neighbors dies from overpopulation.
      *
-     * TODO: Complete this method.
      */
     public void update() {
         boolean[][] nextGeneration = new boolean[society.length][society[0].length];
@@ -121,8 +117,6 @@ public class GameOfLife {
         }
         society = nextGeneration;
 
-        // TODO: Create a SECOND 2D boolean array for the next generation.
-        //
         // IMPORTANT:
         // Do not change society while you are still using it to calculate
         // neighbors. Every cell in the new generation must be based on the
@@ -134,11 +128,9 @@ public class GameOfLife {
      * O = live cell
      * . = dead cell
      *
-     * TODO: Complete this method.
      */
     @Override
     public String toString() {
-        // TODO: Use nested loops to build one String containing the board.
         //       Add a newline after every row.
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < society.length; i++) {
