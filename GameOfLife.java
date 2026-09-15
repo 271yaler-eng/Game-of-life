@@ -125,7 +125,6 @@ public class GameOfLife {
      */
     @Override
     public String toString() {
-        //       Add a newline after every row.
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < society.length; i++) {
             for (int j = 0; j < society[0].length; j++) {

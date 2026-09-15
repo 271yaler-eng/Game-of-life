@@ -8,7 +8,7 @@ society.length represents the amount of rows that the 2D society array has start
 society[row].length represents the amount of columns that the 2D society array has starting from index 0, but 
 more specifically, at a specific row. 
 -Why could changing society directly while traversing it produce incorrect results?
-Changing society directly while traversing it could produce incorrect results because later cells would be calculating their neighbors using a mixture of the old generation and the newly changed generation. Each change to society is predetermined by the arrangement of the living cells, and changing society directly would activate conditions that could ruin the predetermined changes. 
+Changing society directly while traversing it could produce incorrect results because later cells would be calculating their neighbors using a mixture of the old generation and the newly changed generation. Every cell needs to be calculated based only on the original generation.
 -Why must neighborCount() check array boundaries?
 neighborCount() must check array boundaries, because if the neighborCount() method checks a cell that is outside of the boundaries, that would cause an ArrayIndexOutOfBoundsException.
 -Why do we need a second 2D array inside update()?
