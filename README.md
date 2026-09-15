@@ -8,9 +8,7 @@ society.length represents the amount of rows that the 2D society array has start
 society[row].length represents the amount of columns that the 2D society array has starting from index 0, but 
 more specifically, at a specific row. 
 -Why could changing society directly while traversing it produce incorrect results?
-Because certain conditions could be met as the program runs that would screw up how the program is supposed to
-run, and would break a bunch of the game rules. Each change to society is predetermined by the arrangement of
-the living cells, and changing society directly would activate conditions that could ruin the predetermined changes. 
+Changing society directly while traversing it could produce incorrect results because later cells would be calculating their neighbors using a mixture of the old generation and the newly changed generation. Each change to society is predetermined by the arrangement of the living cells, and changing society directly would activate conditions that could ruin the predetermined changes. 
 -Why must neighborCount() check array boundaries?
 neighborCount() must check array boundaries, because if the neighborCount() method checks a cell that is outside of the boundaries, that would cause an ArrayIndexOutOfBoundsException.
 -Why do we need a second 2D array inside update()?
@@ -19,4 +17,4 @@ We need a second 2D array inside of update() because that helps the program full
 The same GameOfLife object can be displayed as both text and graphics because they both use the same 2D array, just with different methods that implement each of them: 1. as a graphic, and 2. as text. 
 -What happens to a glider when it reaches the edge of our board, and how is that different 
 from wraparound?
-When a glider reaches the edge of the board, each cell that moves outside of the boundaries gets ignored, and pretty much just gets deleted the next time that the society updates. This is different from a wraparound in the sense that instead of the living cell moving and coming around the other side of the society, the living cell dies by going out of bounds. 
+When a glider reaches the edge of the board, each cell that moves outside of the boundaries gets ignored, and pretty much just gets deleted the next time that the society updates. With wraparound, a cell leaving one edge of the board would appear on the opposite edge. Our Game of Life does not use wraparound, so the edges act as boundaries.
