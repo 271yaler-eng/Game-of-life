@@ -96,16 +96,16 @@ public class GameOfLifeTest {
     }
 
     private static void testBirth() {
-    GameOfLife game = new GameOfLife(5, 5);
+        GameOfLife game = new GameOfLife(5, 5);
 
-    game.growCellAt(1, 1);
-    game.growCellAt(1, 2);
-    game.growCellAt(1, 3);
+        game.growCellAt(1, 1);
+        game.growCellAt(1, 2);
+        game.growCellAt(1, 3);
 
-    game.update();
+        game.update();
 
-    check("update: dead cell with 3 neighbors is born",
-            game.cellAt(2, 2));
+        check("update: dead cell with 3 neighbors is born",
+                game.cellAt(2, 2));
     }
 
     private static void testSurvival() {
